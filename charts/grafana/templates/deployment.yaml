@@ -46,7 +46,7 @@ spec:
         {{- end }}
         kubectl.kubernetes.io/default-container: {{ .Chart.Name }}
         {{- with .Values.podAnnotations }}
-        {{- toYaml . | nindent 8 }}
+        {{- tpl (toYaml .) $ | nindent 8 }}
         {{- end }}
     spec:
       {{- include "grafana.pod" . | nindent 6 }}

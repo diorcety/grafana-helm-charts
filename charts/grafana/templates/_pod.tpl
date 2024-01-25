@@ -1039,12 +1039,12 @@ containers:
       - name: GF_SMTP_USER
         valueFrom:
           secretKeyRef:
-            name: {{ .Values.smtp.existingSecret }}
+            name: {{ tpl .Values.smtp.existingSecret . }}
             key: {{ .Values.smtp.userKey | default "user" }}
       - name: GF_SMTP_PASSWORD
         valueFrom:
           secretKeyRef:
-            name: {{ .Values.smtp.existingSecret }}
+            name: {{ tpl .Values.smtp.existingSecret . }}
             key: {{ .Values.smtp.passwordKey | default "password" }}
       {{- end }}
       {{- if .Values.imageRenderer.enabled }}
